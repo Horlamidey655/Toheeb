@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Step Lead Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type=text], input[type=email], input[type=tel], button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .form-step {
+      display: none;
+    }
+    .form-step.active {
+      display: block;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .checkbox-group, .radio-group {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <form id="multiStepForm" action="https://hook.us1.make.com/your-make-webhook-url" method="POST">
+    
+    <!-- Step 1 -->
+    <div class="form-step active" id="step-1">
+      <h2>Step 1: Quote Details</h2>
+      
+      <label><strong>1. Specify the subject for which you wish to receive a free quote:</strong></label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="quote_subject" value="Sofa" required> Sofa</label>
+        <label><input type="checkbox" name="quote_subject" value="Armchair"> Armchair</label>
+        <label><input type="checkbox" name="quote_subject" value="Chair"> Chair</label>
+      </div>
+
+      <label><strong>2. How many chairs do you have to clean?</strong></label>
+      <div class="radio-group">
+        <label><input type="radio" name="chair_quantity" value="1" required> 1</label>
+        <label><input type="radio" name="chair_quantity" value="2"> 2</label>
+        <label><input type="radio" name="chair_quantity" value="3"> 3</label>
+        <label><input type="radio" name="chair_quantity" value="4"> 4</label>
+        <label><input type="radio" name="chair_quantity" value="5"> 5</label>
+        <label><input type="radio" name="chair_quantity" value="6"> 6</label>
+      </div>
+
+      <button type="button" onclick="nextStep()">Next</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-step" id="step-2">
+      <h2>Step 2: Additional Details</h2>
+
+      <label><strong>3. How many armchairs do you have to clean?</strong></label>
+      <div class="radio-group">
+        <label><input type="radio" name="armchair_quantity" value="1"> 1</label>
+        <label><input type="radio" name="armchair_quantity" value="2"> 2</label>
+        <label><input type="radio" name="armchair_quantity" value="3"> 3</label>
+      </div>
+
+      <label><strong>4. Is there animal hair on the coating?</strong></label>
+      <div class="radio-group">
+        <label><input type="radio" name="animal_hair" value="Yes"> Yes</label>
+        <label><input type="radio" name="animal_hair" value="No"> No</label>
+      </div>
+
+      <label for="first_name"><strong>First Name:</strong></label>
+      <input type="text" name="first_name" id="first_name" required>
+
+      <label for="last_name"><strong>Last Name:</strong></label>
+      <input type="text" name="last_name" id="last_name" required>
+
+      <label for="phone"><strong>Phone Number:</strong></label>
+      <input type="tel" name="phone" id="phone" required>
+
+      <label for="email"><strong>Email Address:</strong></label>
+      <input type="email" name="email" id="email" required>
+
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <script>
+    function nextStep() {
+      document.getElementById('step-1').classList.remove('active');
+      document.getElementById('step-2').classList.add('active');
+    }
+  </script>
+</body>
+</html>
